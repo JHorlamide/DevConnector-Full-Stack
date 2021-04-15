@@ -1,7 +1,7 @@
 const asyncMiddleware = require('../middleware/async');
 const Profile = require('../model/Profile');
 const User = require('../model/User');
-const { Post, postValidation } = require('../model/Post');
+const {Post, postValidation} = require('../model/Post');
 
 /***
  * @router  POST: api/posts
@@ -9,23 +9,23 @@ const { Post, postValidation } = require('../model/Post');
  * @access  Private
  * ***/
 const createPost = asyncMiddleware(async (req, res) => {
-  const { error } = postValidation(req.body);
-  if (error) {
-    return res.status(400).json({ msg: error.details[0].message });
-  }
+    const {error} = postValidation(req.body);
+    if (error) {
+        return res.status(400).json({msg: error.details[0].message});
+    }
 
-  const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.user.id).select('-password');
 
-  const newPost = new Post({
-    text: req.body.text,
-    name: user.name,
-    avatar: user.avatar,
-    user: req.user.id,
-  });
+    const newPost = new Post({
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id,
+    });
 
-  const post = await newPost.save();
+    const post = await newPost.save();
 
-  res.json({post});
+    res.json({post});
 });
 
 /***
@@ -34,9 +34,9 @@ const createPost = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const getAllPosts = asyncMiddleware(async (req, res) => {
-  const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find().sort({date: -1});
 
-  res.json({posts});
+    res.json({posts});
 });
 
 /***
@@ -45,13 +45,13 @@ const getAllPosts = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const getPost = asyncMiddleware(async (req, res) => {
-  const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id);
 
-  if (!post) {
-    return res.status(404).json({ msg: 'Post not found' });
-  }
+    if (!post) {
+        return res.status(404).json({msg: 'Post not found'});
+    }
 
-  res.json({post});
+    res.json({post});
 });
 
 /***
@@ -60,19 +60,19 @@ const getPost = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const deletePost = asyncMiddleware(async (req, res) => {
-  const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id);
 
-  if (!post) {
-    return res.status(404).json({ msg: 'Post not found' });
-  }
+    if (!post) {
+        return res.status(404).json({msg: 'Post not found'});
+    }
 
-  if (post.user.toString() === req.user.id) {
-    return res.status(401).json({ msg: 'User not authorized' });
-  }
+    if (post.user.toString() === req.user.id) {
+        return res.status(401).json({msg: 'User not authorized'});
+    }
 
-  await post.remove();
+    await post.remove();
 
-  res.json({ msg: 'Post removed' });
+    res.json({msg: 'Post removed'});
 });
 
 /***
@@ -81,21 +81,21 @@ const deletePost = asyncMiddleware(async (req, res) => {
  * @access   Private
  * ***/
 const LikePost = asyncMiddleware(async (req, res) => {
-  const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id);
 
-  /* Check if post has already been liked by login user */
-  if (
-    post.likes.filter((likes) => likes.user.toString() === req.user.id).length >
-    0
-  ) {
-    return res.status(400).json({ msg: 'Post already liked' });
-  }
+    /* Check if post has already been liked by login user */
+    if (
+        post.likes.filter((likes) => likes.user.toString() === req.user.id).length >
+        0
+    ) {
+        return res.status(400).json({msg: 'Post already liked'});
+    }
 
-  post.likes.unshift({ user: req.user.id });
+    post.likes.unshift({user: req.user.id});
 
-  await post.save();
+    await post.save();
 
-  res.json(post.likes);
+    res.json(post.likes);
 });
 
 /***
@@ -104,26 +104,26 @@ const LikePost = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const unLikePost = asyncMiddleware(async (req, res) => {
-  const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id);
 
-  /* Check if post has already been liked by logged in user */
-  if (
-    post.likes.filter((like) => like.user.toString() === req.user.id).length ===
-    0
-  ) {
-    return res.status(400).json({ msg: 'Post has not yet been liked.' });
-  }
+    /* Check if post has already been liked by logged in user */
+    if (
+        post.likes.filter((like) => like.user.toString() === req.user.id).length ===
+        0
+    ) {
+        return res.status(400).json({msg: 'Post has not yet been liked.'});
+    }
 
-  /* Post index */
-  const removeIndex = post.likes
-    .map((like) => like.user.toString())
-    .indexOf(req.params.id);
+    /* Post index */
+    const removeIndex = post.likes
+        .map((like) => like.user.toString())
+        .indexOf(req.params.id);
 
-  post.likes.splice(removeIndex, 1);
+    post.likes.splice(removeIndex, 1);
 
-  await post.save();
+    await post.save();
 
-  res.json(post.likes);
+    res.json(post.likes);
 });
 
 /***
@@ -132,28 +132,28 @@ const unLikePost = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const commentPost = asyncMiddleware(async (req, res) => {
-  const { error } = postValidation(req.body);
+    const {error} = postValidation(req.body);
 
-  if (error) {
-    return res.status(400).json({ msg: error.details[0].message });
-  }
+    if (error) {
+        return res.status(400).json({msg: error.details[0].message});
+    }
 
-  const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
 
-  const post = await Post.findById(req.params.post_id);
+    const post = await Post.findById(req.params.post_id);
 
-  const newComment = {
-    user: req.user.id,
-    text: req.body.text,
-    name: user.name,
-    avatar: user.avatar,
-  };
+    const newComment = {
+        user: req.user.id,
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+    };
 
-  post.comments.unshift(newComment);
+    post.comments.unshift(newComment);
 
-  await post.save();
+    await post.save();
 
-  res.json(post.comments);
+    res.json(post.comments);
 });
 
 /***
@@ -162,44 +162,44 @@ const commentPost = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const deleteComment = asyncMiddleware(async (req, res) => {
-  const { post_id, comment_id } = req.params;
+    const {post_id, comment_id} = req.params;
 
-  const post = await Post.findById(post_id);
+    const post = await Post.findById(post_id);
 
-  /* Pull out comment from post */
-  const comment = post.comments.find((comment) => comment.id === comment_id);
+    /* Pull out comment from post */
+    const comment = post.comments.find((comment) => comment.id === comment_id);
 
-  /* Check if comment exists */
-  if (!comment) {
-    return res.json({ msg: 'Comment does not exist' });
-  }
+    /* Check if comment exists */
+    if (!comment) {
+        return res.json({msg: 'Comment does not exist'});
+    }
 
-  /* Check if user create post */
-  if (comment.user.toString() !== req.user.id) {
-    return res.status(401).json({ msg: 'User not authorized' });
-  }
+    /* Check if user create post */
+    if (comment.user.toString() !== req.user.id) {
+        return res.status(401).json({msg: 'User not authorized'});
+    }
 
-  /* Comment index */
-  const removeIndex = post.comments
-    .map((comment) => {
-      return comment.user;
-    })
-    .indexOf(req.user.id);
+    /* Comment index */
+    const removeIndex = post.comments
+        .map((comment) => {
+            return comment.user;
+        })
+        .indexOf(req.user.id);
 
-  post.comments.splice(removeIndex, 1);
+    post.comments.splice(removeIndex, 1);
 
-  await post.save();
+    await post.save();
 
-  res.json(post.comments);
+    res.json(post.comments);
 });
 
 module.exports = {
-  createPost,
-  getAllPosts,
-  getPost,
-  deletePost,
-  LikePost,
-  unLikePost,
-  commentPost,
-  deleteComment,
+    createPost,
+    getAllPosts,
+    getPost,
+    deletePost,
+    LikePost,
+    unLikePost,
+    commentPost,
+    deleteComment,
 };

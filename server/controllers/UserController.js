@@ -4,8 +4,9 @@ const bcrypt = require('bcrypt');
 const _ = require('lodash');
 
 /* Custom Modules */
-const validation = require('../model/User');
-const User = require('../model/User');
+const {validation, User} = require('../model/User');
+// const validation = require('../model/User');
+// const User = require('../model/User');
 
 
 /***
@@ -39,7 +40,7 @@ const createUser = asyncMiddleware(async (req, res) => {
 
   const token = user.generateAuthToken();
 
-  res.header('x-aut-token', token).json({token});
+  res.json({token});
 });
 
 module.exports = { createUser };

@@ -60,5 +60,5 @@ const validation = (user) => {
   return schema.validate(user);
 };
 
-module.exports = { validation };
-module.exports = User;
+exports.validation = validation;
+exports.User = User;
