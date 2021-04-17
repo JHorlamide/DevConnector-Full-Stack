@@ -89,7 +89,7 @@ const EditProfile = () => {
   const handSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createProfile(formData, history));
+    dispatch(createProfile(formData, history, true));
 
     console.log(formData);
 
