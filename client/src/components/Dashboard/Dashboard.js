@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+import DashboardAction from "./DashboardAction";
 import axios from "axios";
 import { CircularProgress, Typography } from "@material-ui/core";
 import useStyles from "./style";
@@ -39,7 +40,9 @@ const Dashboard = () => {
         <i className="fas fa-user"></i> Welcome {user && user.name}
       </Typography>
       {profile !== null ? (
-        <Fragment>Has</Fragment>
+        <Fragment>
+          <DashboardAction />
+        </Fragment>
       ) : (
         <Fragment>
           <Typography>

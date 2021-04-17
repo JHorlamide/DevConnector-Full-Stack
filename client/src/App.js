@@ -10,6 +10,7 @@ import Landing from "./components/Layouts/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import CreatProfile from "./components/Profile_Form/CreateProfile";
 import PrivateRoute from "./components/Routing/PrivateRoute";
+import EditProfile from "./components/Profile_Form/EditProfile";
 import Alert from "./components/Layouts/Alert";
 import Register from "./components/auth/register/Register";
 import Login from "./components/auth/login/Login";
@@ -52,6 +53,7 @@ const App = () => {
               path="/create_profile"
               component={CreatProfile}
             />
+            <PrivateRoute exact path="/edit-profile" component={EditProfile} />
           </Switch>
         </section>
       </Fragment>
