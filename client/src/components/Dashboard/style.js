@@ -1,10 +1,10 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   alignment: {
-    width: "200px",
-    margin: "auto",
-    display: "block",
+    width: '200px',
+    margin: 'auto',
+    display: 'block',
   },
 
   buttonSubmit: {
@@ -13,11 +13,17 @@ export default makeStyles((theme) => ({
   },
 
   hover: {
-    background: "#f4f4f4",
-    "&:hover": {
-      backgroundColor: "#3f51b5",
-      color: "#ffff",
+    background: '#f4f4f4',
+    '&:hover': {
+      backgroundColor: '#3f51b5',
+      color: '#ffff',
     },
+  },
+
+  navigation: {
+    margin: '20px',
+    right: '-120px',
+    padding: '0',
   },
 }));
 

@@ -76,7 +76,7 @@ export const login = (user) => {
       const err = error.response.data.msg;
 
       if (err) {
-        dispatch(setAlert(err, 3000));
+        dispatch(setAlert(err, 'error', 3000));
       }
 
       dispatch({ type: LOGIN_FAIL });

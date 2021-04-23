@@ -1,7 +1,7 @@
 const request = require('request');
 const config = require('config');
 const asyncMiddleware = require('../middleware/async');
-const User = require('../model/User');
+const {User} = require('../model/User');
 const {
   Profile,
   validateProfile,
@@ -128,7 +128,7 @@ const getProfileById = asyncMiddleware(async (req, res) => {
  * @desc    Delete profile, user, and post
  * @access  Private
  * ***/
-const deleteProileAndUser = asyncMiddleware(async (req, res) => {
+const deleteProfileAndUser = asyncMiddleware(async (req, res) => {
   // @todo - Remove user posts
 
   /* Delete Profile */
@@ -137,12 +137,12 @@ const deleteProileAndUser = asyncMiddleware(async (req, res) => {
   /* Delete User */
   await User.findOneAndRemove({ _id: req.user.id });
 
-  res.json({ msg: 'User deleted' });
+  res.json({ msg: 'Your account has been permanently deleted.' });
 });
 
 /***
  * @router  PUT: api/profile/experience
- * @desc    Put user profile experience
+ * @desc    Add experience to profile
  * @access  Private
  * ***/
 const addProfileExperience = asyncMiddleware(async (req, res) => {
@@ -170,7 +170,7 @@ const addProfileExperience = asyncMiddleware(async (req, res) => {
 
   await profile.save();
 
-  res.json({ profile });
+  res.json(profile);
 });
 
 /***
@@ -191,11 +191,11 @@ const deleteExperience = asyncMiddleware(async (req, res) => {
 
   await profile.save();
 
-  res.json({profile});
+  res.json(profile);
 });
 
 /***
- * @router  PUT: api/profile/education/
+ * @router  PUT: api/profile/education
  * @desc    Add education to profile
  * @access  Private
  * ***/
@@ -237,7 +237,7 @@ const addProfileEducation = asyncMiddleware(async (req, res) => {
 
   await profile.save();
 
-  res.json({ profile });
+  res.json(profile);
 });
 
 /***
@@ -258,7 +258,7 @@ const deleteEducation = asyncMiddleware(async (req, res) => {
 
   await profile.save();
 
-  res.json({ profile });
+  res.json(profile);
 });
 
 /***
@@ -295,7 +295,7 @@ module.exports = {
   createAndUpdateProfile,
   getProfiles,
   getProfileById,
-  deleteProileAndUser,
+  deleteProfileAndUser,
   addProfileExperience,
   deleteExperience,
   addProfileEducation,

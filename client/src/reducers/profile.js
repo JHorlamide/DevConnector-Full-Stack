@@ -2,6 +2,8 @@ import {
   GET_PROFILE,
   PROFILE_ERROR,
   CLEAR_PROFIL,
+  ADD_PROFILE_EXPERIENCE,
+  ADD_PROFILE_EDUCATION,
 } from "../constant/types";
 
 const initialState = {
@@ -17,6 +19,8 @@ const profileReducer = (state = initialState, action) => {
 
   switch (type) {
     case GET_PROFILE:
+    case ADD_PROFILE_EDUCATION:
+    case ADD_PROFILE_EXPERIENCE:
       return {
         ...state,
         profile: payload,

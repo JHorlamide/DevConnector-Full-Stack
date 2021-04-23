@@ -1,22 +1,22 @@
-import React from "react";
-import { useHistory, Link } from "react-router-dom";
-import useStyle from "./style";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useStyle from './style';
 
 const DashboardAction = () => {
   const classes = useStyle();
-  const history = useHistory();
+
   return (
-    <div className="dash-buttons">
-      <Link to="edit-profile" className={`${classes.hover} btn btn-light`}>
-        <i className="fas fa-user-circle text-primary"></i> Edit Profile
+    <div className={`${classes.navigation} dash-buttons`}>
+      <Link to='edit-profile' className={`${classes.hover} btn btn-light`}>
+        <i className='fas fa-user-circle text-primary'></i> Edit Profile
       </Link>
 
-      <Link to="add-experience" className={`${classes.hover} btn btn-light`}>
-        <i className="fab fa-black-tie text-primary"></i> Add Experience
+      <Link to='add-experience' className={`${classes.hover} btn btn-light`}>
+        <i className='fab fa-black-tie text-primary'></i> Add Experience
       </Link>
 
-      <Link to="add-education" className={`${classes.hover} btn btn-light`}>
-        <i className="fas fa-graduation-cap text-primary"></i> Add Education
+      <Link to='add-education' className={`${classes.hover} btn btn-light`}>
+        <i className='fas fa-graduation-cap text-primary'></i> Add Education
       </Link>
     </div>
   );

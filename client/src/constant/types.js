@@ -1,17 +1,22 @@
-export const SET_ALERT = "SET_ALERT";
-export const REMOVE_ALERT = "REMOVE_ALERT";
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
 
-/* AUTHENTICATION */ 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGSTER_FAIL = "REGISTER_FAIL";
-export const USER_LOADED = "USER_LOADED";
-export const AUTH_ERROR = "AUTH_ERROR";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-export const LOGOUT = "LOGOUT";
+/* REGISTRATION */
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGSTER_FAIL = 'REGISTER_FAIL';
+export const USER_LOADED = 'USER_LOADED';
+
+/* AUTHENTICATION */
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+
+/* PROFILE */
 export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const CLEAR_PROFIL = 'CLEAR_PROFILE';
-
-/* PROFILE */
-export const PROILE= ''; 
+export const ADD_PROFILE_EXPERIENCE = 'ADD_PROFILE_EXPERIENCE';
+export const ADD_PROFILE_EDUCATION = 'ADD_PROFILE_EDUCATION';
+export const DELETE_PROFILE_EXP = 'DELETE_PROFILE_EXP';
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';

@@ -75,7 +75,7 @@ const Login = () => {
           autoComplete="off"
           noValidate
           className={`${classes.root} ${classes.form}`}
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
         >
           {/* Email */}
           <TextField

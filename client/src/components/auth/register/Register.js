@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
 /* Material UI Component */
 import {
@@ -9,20 +9,21 @@ import {
   TextField,
   Typography,
   Container,
-} from "@material-ui/core";
-import useStyles from "./style";
+} from '@material-ui/core';
+import useStyles from './style';
 
 /* Actions */
-import { setAlert } from "../../../actions/alert";
-import { registerUser } from "../../../actions/auth";
+import { setAlert } from '../../../actions/alert';
+import { registerUser } from '../../../actions/auth';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password2: "",
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
   });
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -38,7 +39,7 @@ const Register = () => {
   });
 
   if (isAuthenticated) {
-    history.push("/dashboard");
+    history.push('/dashboard');
   }
 
   const handleSubmit = async (e) => {
@@ -48,15 +49,15 @@ const Register = () => {
       setFormData({
         name,
         email,
-        password: "",
-        password2: "",
+        password: '',
+        password2: '',
       });
-      
-      return dispatch(setAlert("Password do not match", "error"));
+
+      return dispatch(setAlert('Password do not match', 'error'));
     }
 
     if (!(name && email)) {
-      return dispatch(setAlert("Please enter your name and email", "error"));
+      return dispatch(setAlert('Please enter your name and email', 'error'));
     }
 
     dispatch(registerUser({ name, email, password }));
@@ -66,36 +67,36 @@ const Register = () => {
 
   const clearButtonHandler = () => {
     return setFormData({
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
+      name: '',
+      email: '',
+      password: '',
+      password2: '',
     });
   };
 
   /* View */
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth='sm'>
       <Paper className={classes.paper}>
-        <Typography variant="h6" className="large text-primary" align="center">
+        <Typography variant='h6' className='large text-primary' align='center'>
           Sign Up
         </Typography>
-        <Typography variant="subtitle1" className="lead" align="center">
-          <i className="fas fa-user"></i> Create Your Account
+        <Typography variant='subtitle1' className='lead' align='center'>
+          <i className='fas fa-user'></i> Create Your Account
         </Typography>
         <form
-          autoComplete="off"
+          autoComplete='off'
           noValidate
           className={`${classes.root} ${classes.form}`}
-          onSubmit={handleSubmit}
+          onSubmit={(e) => handleSubmit(e)}
         >
           {/* Name */}
           <TextField
-            type="text"
-            name="name"
+            type='text'
+            name='name'
             value={name}
-            variant="outlined"
-            label="Name"
+            variant='outlined'
+            label='Name'
             fullWidth
             onChange={(e) => onChange(e)}
             required
@@ -103,11 +104,11 @@ const Register = () => {
 
           {/* Email */}
           <TextField
-            type="email"
-            name="email"
+            type='email'
+            name='email'
             value={email}
-            label="Email"
-            variant="outlined"
+            label='Email'
+            variant='outlined'
             fullWidth
             onChange={(e) => onChange(e)}
             required
@@ -119,42 +120,42 @@ const Register = () => {
 
           {/* Password */}
           <TextField
-            type="password"
-            name="password"
+            type='password'
+            name='password'
             value={password}
-            label="Password"
-            variant="outlined"
+            label='Password'
+            variant='outlined'
             fullWidth
-            minLength="6"
+            minLength='6'
             onChange={(e) => onChange(e)}
             required
           />
           {/* Confirm Password */}
           <TextField
-            type="password"
-            name="password2"
+            type='password'
+            name='password2'
             value={password2}
-            label="Confirm Password"
-            variant="outlined"
+            label='Confirm Password'
+            variant='outlined'
             fullWidth
-            minLength="6"
+            minLength='6'
             onChange={(e) => onChange(e)}
             required
           />
           {/* Button */}
           <Button
             className={classes.buttonSubmit}
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
+            variant='contained'
+            color='primary'
+            size='large'
+            type='submit'
             fullWidth
           >
             Submit
           </Button>
         </form>
-        <Typography className="my-1">
-          Already have an account? <Link to="/login">Sign In</Link>
+        <Typography className='my-1'>
+          Already have an account? <Link to='/login'>Sign In</Link>
         </Typography>
       </Paper>
     </Container>

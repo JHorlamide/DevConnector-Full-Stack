@@ -29,7 +29,7 @@ router.get('/user/:user_id', ProfileController.getProfileById);
 /***
  * @router  DELETE: api/profile/
  * ***/
-router.delete('/', auth, ProfileController.deleteProileAndUser);
+router.delete('/', auth, ProfileController.deleteProfileAndUser);
 
 /***
  * @router  PUT: api/profile/experience

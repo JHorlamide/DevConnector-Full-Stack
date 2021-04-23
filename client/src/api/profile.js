@@ -1,6 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "/api/profile";
+const url = '/api/profile';
+
+/***
+ * @router  GET: api/profile
+ * @desc    Get all profiles
+ * @access  Public
+ * ***/
+export const getProfiles = () => {};
 
 /***
  * @router  GET: api/profile/me
@@ -28,7 +35,7 @@ export const getCurrentProfile = (source) => {
 export const createProfile = (profile) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
@@ -36,8 +43,59 @@ export const createProfile = (profile) => {
 };
 
 /***
- * @router  GET: api/profile
- * @desc    Get all profiles
- * @access  Public
+ * @router  PUT: api/profile/experience
+ * @desc    Put user profile experience
+ * @access  Private
  * ***/
-export const getProfiles = () => {};
+export const addProfileExperience = (experience) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return axios.put(`${url}/experience`, experience, config);
+};
+
+/***
+ * @router  PUT: api/profile/education/
+ * @desc    Add education to profile
+ * @access  Private
+ * ***/
+export const addProfileEducation = (education) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return axios.put(`${url}/education`, education, config);
+};
+
+/***
+ * @router  DELETE: api/profile/experience/:exp_id
+ * @desc    Delete exeperience from profile
+ * @access  Private
+ * ***/
+export const deleteExperience = (id) => {
+  return axios.delete(`${url}/experience/${id}`);
+};
+
+
+/***
+ * @router  DELETE: api/profile/education/:edu_id
+ * @desc    Delete education profile
+ * @access  Private
+ * ***/
+export const deleteEducation = (id) => {
+  return axios.delete(`${url}/education/${id}`)
+}
+
+/***
+ * @router  DELETE: api/profile/
+ * @desc    Delete profile, user, and post
+ * @access  Private
+ * ***/
+export const deleteAccount = () => {
+  return axios.delete(url);
+}
