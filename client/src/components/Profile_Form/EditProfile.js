@@ -99,12 +99,12 @@ const EditProfile = () => {
     dispatch(createProfile(formData, history, true));
 
     window.scrollTo({
-      top: "100px",
-      behavior: "smooth"
-    })
-    
+      top: '100px',
+      behavior: 'smooth',
+    });
+
     clearButtonHandler();
-  };;
+  };
 
   const clearButtonHandler = () => {
     return setformData({
