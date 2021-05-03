@@ -64,13 +64,11 @@ const CreateProfile = () => {
 
     dispatch(createProfile(formData, history));
 
-    
-
     window.scrollTo({
       top: '100px',
       behavior: 'smooth',
     });
- 
+
     clearButtonHandler();
   };
 

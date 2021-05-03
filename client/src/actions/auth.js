@@ -50,7 +50,7 @@ export const registerUser = (user) => {
 
       /* Set Alert  */
       if (err) {
-        dispatch(setAlert(err, 3000));
+        dispatch(setAlert(err, 'error', 3000));
       }
 
       dispatch({

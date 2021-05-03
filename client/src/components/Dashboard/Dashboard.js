@@ -34,11 +34,15 @@ const Dashboard = () => {
       source.cancel('Request Cancelled.');
     };
 
-    // eslint-disable-next-line
-  }, []);
+    /*
+    To do:
+    -Remove dispatch if app not working properly
+    eslint-disable-next-line
+    */
+  }, [dispatch]);
 
   return loading && profile === null ? (
-    <CircularProgress className={classes.alignment} />
+    <CircularProgress className={classes.alignment} align='center'/>
   ) : (
     <Fragment>
       <Typography variant='h5' align='center' className='larget text-primary'>

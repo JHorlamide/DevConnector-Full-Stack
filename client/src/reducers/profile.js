@@ -4,7 +4,9 @@ import {
   CLEAR_PROFIL,
   ADD_PROFILE_EXPERIENCE,
   ADD_PROFILE_EDUCATION,
-} from "../constant/types";
+  GET_PROFILES,
+  GET_GITHUB_REPOS,
+} from '../constant/types';
 
 const initialState = {
   profile: null,
@@ -27,9 +29,17 @@ const profileReducer = (state = initialState, action) => {
         loading: false,
       };
 
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false,
+      };
+
     case PROFILE_ERROR:
       return {
         ...state,
+        profile: null,
         error: payload,
         loading: false,
       };
@@ -38,6 +48,12 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: null,
         repos: [],
+        loading: false,
+      };
+    case GET_GITHUB_REPOS:
+      return {
+        ...state,
+        repos: payload,
         loading: false,
       };
     default:

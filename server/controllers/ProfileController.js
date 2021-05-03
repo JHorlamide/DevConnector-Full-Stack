@@ -1,7 +1,8 @@
 const request = require('request');
 const config = require('config');
 const asyncMiddleware = require('../middleware/async');
-const {User} = require('../model/User');
+const { User } = require('../model/User');
+const { Post } = require('../model/Post');
 const {
   Profile,
   validateProfile,
@@ -103,7 +104,7 @@ const createAndUpdateProfile = asyncMiddleware(async (req, res) => {
  * ***/
 const getProfiles = asyncMiddleware(async (req, res) => {
   const profiles = await Profile.find().populate('user', ['name', 'avatar']);
-  res.json({profiles});
+  res.json(profiles);
 });
 
 /***
@@ -120,7 +121,7 @@ const getProfileById = asyncMiddleware(async (req, res) => {
     return res.status(404).json({ msg: 'Profile not found' });
   }
 
-  res.json({profile});
+  res.send(profile);
 });
 
 /***
@@ -129,7 +130,8 @@ const getProfileById = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const deleteProfileAndUser = asyncMiddleware(async (req, res) => {
-  // @todo - Remove user posts
+  /*Remove user posts*/
+  await Post.deleteMany({ user: req.user.id });
 
   /* Delete Profile */
   await Profile.findOneAndRemove({ user: req.user.id });
@@ -260,6 +262,7 @@ const deleteEducation = asyncMiddleware(async (req, res) => {
 
   res.json(profile);
 });
+
 
 /***
  * @router  DELETE: api/profile/github/:username

@@ -388,10 +388,11 @@ button {
   color: #fff;
   margin: 0 0.3rem;
 }
+/* Olamide mad Commented */
 
-.profile-top .icons a:hover {
+/* .profile-top .icons a:hover {
   color: var(--dark-color);
-}
+} */
 
 .profile-about {
   grid-area: about;

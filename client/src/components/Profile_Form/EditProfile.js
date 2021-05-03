@@ -66,7 +66,12 @@ const EditProfile = () => {
       source.cancel('Request Cancelled.');
     };
 
-    //eslint-disable-next-line
+    /*
+    To do:
+    -Remove dispatch if app not working properly
+    */
+   
+    //  eslint-disable-next-line
   }, [loading]);
 
   const {

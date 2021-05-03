@@ -87,6 +87,7 @@ const AddExperience = () => {
           <i className='fas fa-code-branch'></i> Add any developer/programming
           positions that you have had in the past
         </Typography>
+        
         <form
           autoComplete='off'
           noValidate

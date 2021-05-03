@@ -153,7 +153,10 @@ const AddEducation = () => {
           <Checkbox
             className={classes.checkbox}
             value={current}
-            onChange={(e) => handleCurrent(e)}
+            onChange={(e) => {
+              handleCurrent(e);
+              onChange(e);
+            }}
             color='primary'
             inputProps={{ 'aria-label': 'primary checkbox' }}
             label='Current'

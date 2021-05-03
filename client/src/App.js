@@ -13,6 +13,8 @@ import PrivateRoute from './components/Routing/PrivateRoute';
 import EditProfile from './components/Profile_Form/EditProfile';
 import AddExperience from './components/Profile_Form/AddExperience';
 import AddEducation from './components/Profile_Form/AddEducation';
+import Profiles from './components/Profiles/Profiles';
+import Profile from './components/Profile/Profile';
 
 import Alert from './components/Layouts/Alert';
 import Register from './components/auth/register/Register';
@@ -37,8 +39,12 @@ const App = () => {
       source.cancel('Request Cancelled.');
     };
 
-    // eslint-disable-next-line
-  }, []);
+    /*
+    To do:
+    -Remove dispatch if app not working properly
+    eslint-disable-next-line
+    */
+  }, [dispatch]);
 
   return (
     <Router>
@@ -50,7 +56,13 @@ const App = () => {
           <Switch>
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/profiles' component={Profiles} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute
+              exact
+              path={`/profile/:id`}
+              component={Profile}
+            />
             <PrivateRoute
               exact
               path='/create_profile'

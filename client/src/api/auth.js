@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-const url = "/api/users";
-const authURI = "/api/auth";
+const url = '/api/users';
+const authURI = '/api/auth';
+
 
 /* Get current logged in user */
 export const getAuthUser = (source) => {
@@ -21,22 +22,21 @@ export const getAuthUser = (source) => {
 export const registerUser = (user) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   const body = JSON.stringify(user);
   return axios.post(url, body, config);
 };
 
-/* Login User */ 
+/* Login User */
 export const login = (user) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
   const body = JSON.stringify(user);
   return axios.post(authURI, body, config);
 };
-

@@ -7,13 +7,59 @@ import {
   ADD_PROFILE_EXPERIENCE,
   ADD_PROFILE_EDUCATION,
   ACCOUNT_DELETED,
+  GET_PROFILES,
+  GET_GITHUB_REPOS,
 } from '../constant/types';
+
+/* Get all profiles */
+export const getProfiles = (source) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await api.getProfiles(source);
+      dispatch({
+        type: GET_PROFILES,
+        payload: data,
+      });
+    } catch (error) {
+      const err = error.response.data.msg;
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: {
+          msg: err,
+          status: error.response.status,
+        },
+      });
+    }
+  };
+};
 
 /* Get Current Authenticated User Profile */
 export const getCurrentProfile = (source) => {
   return async (dispatch) => {
     try {
       const { data } = await api.getCurrentProfile(source);
+      dispatch({
+        type: GET_PROFILE,
+        payload: data,
+      });
+    } catch (error) {
+      const err = error.response.data.msg;
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: {
+          msg: err,
+          status: error.response.status,
+        },
+      });
+    }
+  };
+};
+
+/* Get Profile By Id */
+export const getProfileById = (userId, source) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await api.getProfileById(userId, source);
       dispatch({
         type: GET_PROFILE,
         payload: data,
@@ -197,6 +243,29 @@ export const deleteAccount = () => {
           payload: { msg: errMessage, status: error.response.status },
         });
       }
+    }
+  };
+};
+
+/* Get user repos from Github */
+export const getGithubRepos = (githubUsername) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await api.getGithubRepos(githubUsername);
+      dispatch({
+        type: GET_GITHUB_REPOS,
+        payload: data,
+      });
+    } catch (error) {
+      const err = error.response.data.msg;
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: {
+          msg: err,
+          status: error.response.status,
+        },
+      });
     }
   };
 };

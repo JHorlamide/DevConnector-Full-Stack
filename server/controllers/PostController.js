@@ -1,5 +1,5 @@
+// const Profile = require('../model/Profile');
 const asyncMiddleware = require('../middleware/async');
-const Profile = require('../model/Profile');
 const User = require('../model/User');
 const {Post, postValidation} = require('../model/Post');
 

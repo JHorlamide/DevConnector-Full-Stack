@@ -7,7 +7,19 @@ const url = '/api/profile';
  * @desc    Get all profiles
  * @access  Public
  * ***/
-export const getProfiles = () => {};
+export const getProfiles = (source) => {
+  try {
+    return axios.get(url, {
+      cancelToken: source.token,
+    });
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log(`Error ${error.message}`);
+    }
+    return error;
+  }
+};
+
 
 /***
  * @router  GET: api/profile/me
@@ -23,9 +35,31 @@ export const getCurrentProfile = (source) => {
     if (axios.isCancel(error)) {
       console.log(`Error: ${error.message}`);
     }
+
     return error;
   }
 };
+
+
+/***
+ * @router  GET: api/profile/user/user_id
+ * @desc    Get profile by Id.
+ * @access  Private
+ * ***/
+export const getProfileById = (userId, source) => {
+  try {
+    return axios.get(`${url}/user/${userId}`, {
+      cancelToken: source.token,
+    });
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log(`Error ${error.message}`);
+    }
+
+    return error;
+  }
+};
+
 
 /***
  * @router  POST: api/profile
@@ -42,6 +76,7 @@ export const createProfile = (profile) => {
   return axios.post(url, profile, config);
 };
 
+
 /***
  * @router  PUT: api/profile/experience
  * @desc    Put user profile experience
@@ -57,6 +92,7 @@ export const addProfileExperience = (experience) => {
   return axios.put(`${url}/experience`, experience, config);
 };
 
+
 /***
  * @router  PUT: api/profile/education/
  * @desc    Add education to profile
@@ -71,6 +107,7 @@ export const addProfileEducation = (education) => {
 
   return axios.put(`${url}/education`, education, config);
 };
+
 
 /***
  * @router  DELETE: api/profile/experience/:exp_id
@@ -88,8 +125,9 @@ export const deleteExperience = (id) => {
  * @access  Private
  * ***/
 export const deleteEducation = (id) => {
-  return axios.delete(`${url}/education/${id}`)
-}
+  return axios.delete(`${url}/education/${id}`);
+};
+
 
 /***
  * @router  DELETE: api/profile/
@@ -98,4 +136,23 @@ export const deleteEducation = (id) => {
  * ***/
 export const deleteAccount = () => {
   return axios.delete(url);
-}
+};
+
+
+/***
+ * @router  DELETE: api/profile/github/:username
+ * @desc    Get user repos from Github
+ * @access  Public
+ * ***/
+export const getGithubRepos = (githubUsername, source) => {
+  try {
+    return axios.get(`${url}/github/${githubUsername}`, {
+      cancelToken: source.token,
+    });
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log(`Error ${error.message}`);
+    }
+    return error;
+  }
+};
