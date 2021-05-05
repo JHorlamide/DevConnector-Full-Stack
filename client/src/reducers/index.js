@@ -1,8 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 // Reducers
-import alert from "./alert";
-import auth from "./auth";
-import profile from "./profile";
+import alert from './alert';
+import auth from './auth';
+import profile from './profile';
+import post from './post';
 
-export default combineReducers({ alert, auth, profile });
+export default combineReducers({ alert, auth, profile, post });

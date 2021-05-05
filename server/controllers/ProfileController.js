@@ -57,6 +57,7 @@ const createAndUpdateProfile = asyncMiddleware(async (req, res) => {
 
   /* Build Profile Object */
   const profileFields = {};
+  
   profileFields.user = req.user.id;
   if (company) profileFields.company = company;
   if (website) profileFields.website = website;
@@ -265,7 +266,7 @@ const deleteEducation = asyncMiddleware(async (req, res) => {
 
 
 /***
- * @router  DELETE: api/profile/github/:username
+ * @router  GET: api/profile/github/:username
  * @desc    Get user repos from Github
  * @access  Public
  * ***/
@@ -282,7 +283,7 @@ const getGithubRepos = asyncMiddleware(async (req, res) => {
 
   request(options, (error, response, body) => {
     if (error) {
-      console.log(error);
+      return res.status(400).json({ msg: error });
     }
 
     if (response.statusCode !== 200) {

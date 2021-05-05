@@ -60,10 +60,12 @@ export const getProfileById = (userId, source) => {
   return async (dispatch) => {
     try {
       const { data } = await api.getProfileById(userId, source);
+
       dispatch({
         type: GET_PROFILE,
         payload: data,
       });
+      
     } catch (error) {
       const err = error.response.data.msg;
       dispatch({
@@ -248,21 +250,25 @@ export const deleteAccount = () => {
 };
 
 /* Get user repos from Github */
-export const getGithubRepos = (githubUsername) => {
+export const getGithubRepos = (githubUsername, source) => {
   return async (dispatch) => {
     try {
-      const { data } = await api.getGithubRepos(githubUsername);
+      const { data } = await api.getGithubRepos(githubUsername, source);
+
       dispatch({
         type: GET_GITHUB_REPOS,
         payload: data,
       });
     } catch (error) {
-      const err = error.response.data.msg;
+      const errMessage = error.response.data.msg;
+      dispatch(setAlert(errMessage, 'error'));
+
+      console.log(errMessage);
 
       dispatch({
         type: PROFILE_ERROR,
         payload: {
-          msg: err,
+          msg: errMessage,
           status: error.response.status,
         },
       });

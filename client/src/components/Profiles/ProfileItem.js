@@ -14,6 +14,7 @@ const ProfileItem = ({
     location,
   },
 }) => {
+
   return (
     <Container className='profiles'>
       <Paper className='profile bg-light'>

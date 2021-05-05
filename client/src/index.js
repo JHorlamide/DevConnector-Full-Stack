@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as Sentry from '@sentry/react';
+import { Integrations } from '@sentry/tracing';
 
 /* Redux Implementation */
 import { Provider } from 'react-redux';
@@ -10,6 +12,7 @@ import App from './App';
 import rootReducer from './reducers';
 import reportWebVitals from './reportWebVitals';
 
+/* Redux Initialization */ 
 const initialState = {};
 const middleware = [thunk];
 
@@ -18,6 +21,16 @@ const store = createStore(
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
+
+/* Issue Tracking: (Sentry) */
+Sentry.init({
+  dsn:
+    'https://445890ee234945fe8fbf5205bf12f9f8@o570065.ingest.sentry.io/5749621',
+    autoSessionTracking: true,
+  integrations: [new Integrations.BrowserTracing()],
+
+  tracesSampleRate: 1.0,
+});
 
 ReactDOM.render(
   <Provider store={store}>

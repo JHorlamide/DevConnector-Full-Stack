@@ -11,6 +11,8 @@
   "author": "JHorlamide",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^6.3.5",
+    "@sentry/tracing": "^6.3.5",
     "bcrypt": "^5.0.1",
     "config": "^3.3.6",
     "debug": "^4.3.1",

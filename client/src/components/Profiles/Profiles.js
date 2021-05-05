@@ -30,13 +30,15 @@ const Profiles = () => {
     /*
     To do:
     -Remove dispatch if app not working properly
-    eslint-disable-next-line
+    -Apply: (eslint-disable-next-line) to avoid useEffect warning.
     */
-   
   }, [dispatch]);
 
   return profiles === null && loading ? (
-    <CircularProgress align='center' />
+    <CircularProgress
+      justify='center'
+      style={{ minHeight: '100vh' }}
+    />
   ) : (
     <Container>
       <Box
@@ -58,7 +60,11 @@ const Profiles = () => {
             return <ProfileItem key={profile._id} profile={profile} />;
           })
         ) : (
-          <h4>No profiles found...</h4>
+          <CircularProgress
+            justify='center'
+            style={{ minHeight: '100vh' }}
+          />
+          // <h4>No profiles found...</h4>
         )}
       </div>
     </Container>

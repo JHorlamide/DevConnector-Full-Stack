@@ -1,4 +1,3 @@
-// const Profile = require('../model/Profile');
 const asyncMiddleware = require('../middleware/async');
 const User = require('../model/User');
 const {Post, postValidation} = require('../model/Post');
@@ -10,6 +9,7 @@ const {Post, postValidation} = require('../model/Post');
  * ***/
 const createPost = asyncMiddleware(async (req, res) => {
     const {error} = postValidation(req.body);
+
     if (error) {
         return res.status(400).json({msg: error.details[0].message});
     }
@@ -36,7 +36,7 @@ const createPost = asyncMiddleware(async (req, res) => {
 const getAllPosts = asyncMiddleware(async (req, res) => {
     const posts = await Post.find().sort({date: -1});
 
-    res.json({posts});
+    res.json(posts);
 });
 
 /***

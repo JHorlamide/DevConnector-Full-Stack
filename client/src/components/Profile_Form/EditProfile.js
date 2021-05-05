@@ -108,25 +108,24 @@ const EditProfile = () => {
       behavior: 'smooth',
     });
 
-    clearButtonHandler();
   };
 
-  const clearButtonHandler = () => {
-    return setformData({
-      company: '',
-      website: '',
-      location: '',
-      status: '',
-      skills: '',
-      githubusername: '',
-      bio: '',
-      twitter: '',
-      facebook: '',
-      linkedin: '',
-      youtube: '',
-      instagram: '',
-    });
-  };
+  // const clearButtonHandler = () => {
+  //   return setformData({
+  //     company: '',
+  //     website: '',
+  //     location: '',
+  //     status: '',
+  //     skills: '',
+  //     githubusername: '',
+  //     bio: '',
+  //     twitter: '',
+  //     facebook: '',
+  //     linkedin: '',
+  //     youtube: '',
+  //     instagram: '',
+  //   });
+  // };
 
   return (
     <Container maxWidth='sm'>

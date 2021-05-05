@@ -5,12 +5,12 @@ const ProfileTop = ({
   profile: {
     location,
     company,
-    skills,
     status,
     social,
     website,
     user: { name, avatar },
   },
+  
 }) => {
   return (
     /* Top*/
