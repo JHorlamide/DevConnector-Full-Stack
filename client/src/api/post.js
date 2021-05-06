@@ -8,14 +8,14 @@ const url = '/api/posts';
  * @access  Private
  * ***/
 export const getAllPosts = (source) => {
-   try {
-     return axios.get(url, {
-       cancelToken: source.token,
-     });
-   } catch (error) {
-     if (axios.isCancel(error)) {
-       console.log(`Error ${error.message}`);
-     }
-     return error;
-   }
-}
+  try {
+    return axios.get(url, {
+      cancelToken: source.token,
+    });
+  } catch (error) {
+    if (axios.isCancel(error)) {
+      console.log(`Error ${error.message}`);
+    }
+    return error;
+  }
+};

@@ -57,7 +57,7 @@ const createAndUpdateProfile = asyncMiddleware(async (req, res) => {
 
   /* Build Profile Object */
   const profileFields = {};
-  
+
   profileFields.user = req.user.id;
   if (company) profileFields.company = company;
   if (website) profileFields.website = website;
@@ -264,7 +264,6 @@ const deleteEducation = asyncMiddleware(async (req, res) => {
   res.json(profile);
 });
 
-
 /***
  * @router  GET: api/profile/github/:username
  * @desc    Get user repos from Github
@@ -283,7 +282,7 @@ const getGithubRepos = asyncMiddleware(async (req, res) => {
 
   request(options, (error, response, body) => {
     if (error) {
-      return res.status(400).json({ msg: error });
+      return res.status(400).json({ msg: error.message });
     }
 
     if (response.statusCode !== 200) {
@@ -292,6 +291,7 @@ const getGithubRepos = asyncMiddleware(async (req, res) => {
 
     res.json(JSON.parse(body));
   });
+
 });
 
 module.exports = {

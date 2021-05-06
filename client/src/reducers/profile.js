@@ -6,6 +6,7 @@ import {
   ADD_PROFILE_EDUCATION,
   GET_PROFILES,
   GET_GITHUB_REPOS,
+  GET_GITHUB_ERROR,
 } from '../constant/types';
 
 const initialState = {
@@ -55,6 +56,12 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         repos: payload,
         loading: false,
+      };
+    case GET_GITHUB_ERROR:
+      return {
+        ...state,
+        repos: [],
+        error: payload,
       };
     default:
       return state;

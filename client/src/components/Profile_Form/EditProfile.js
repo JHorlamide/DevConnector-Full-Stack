@@ -40,6 +40,21 @@ const EditProfile = () => {
     instagram: '',
   });
 
+  const {
+    company,
+    website,
+    location,
+    status,
+    skills,
+    githubusername,
+    bio,
+    twitter,
+    facebook,
+    linkedin,
+    youtube,
+    instagram,
+  } = formData;
+
   useEffect(() => {
     const cancelToken = axios.CancelToken;
     const source = cancelToken.source();
@@ -70,24 +85,11 @@ const EditProfile = () => {
     To do:
     -Remove dispatch if app not working properly
     */
-   
+
     //  eslint-disable-next-line
   }, [loading]);
 
-  const {
-    company,
-    website,
-    location,
-    status,
-    skills,
-    githubusername,
-    bio,
-    twitter,
-    facebook,
-    linkedin,
-    youtube,
-    instagram,
-  } = formData;
+  /* Initial distructring of formData */
 
   /* Handle input Field */
   const onChange = (e) => {
@@ -107,7 +109,6 @@ const EditProfile = () => {
       top: '100px',
       behavior: 'smooth',
     });
-
   };
 
   // const clearButtonHandler = () => {
@@ -233,7 +234,6 @@ const EditProfile = () => {
             variant='outlined'
             label='Github Username'
             fullWidth
-            required
           />
           <small className='form-text'>
             If you want your latest repos and a Github link, include your
@@ -250,16 +250,7 @@ const EditProfile = () => {
             ></textarea>
             <small className='form-text'>Tell us a little about yourself</small>
           </div>
-          {/* <TextareaAutosize
-            name="bio"
-            value={bio}
-            onChange={(e) => onChange(e)}
-            aria-label="minimum height"
-            rowsMin={3}
-            placeholder="A short bio of yourself"
-          />
-          <small className="form-text">Tell us a little about yourself</small>
-           */}
+
           {/* Button */}
           <div className='my-2'>
             <Button

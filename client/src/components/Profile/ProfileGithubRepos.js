@@ -26,7 +26,7 @@ const ProfileGithubRepos = ({ username }) => {
         <i className='fab fa-github'></i> Github Repos
       </h2>
 
-      {repos === null ? (
+      {repos.length > 0 ? (
         <h4>No Github Repos</h4>
       ) : (
         repos.map((repo) => (

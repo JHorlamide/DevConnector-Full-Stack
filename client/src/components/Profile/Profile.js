@@ -30,16 +30,12 @@ const Profile = ({ match }) => {
     return () => {
       return source.cancel('Request canceled.');
     };
-
   }, [dispatch, match.params.id]);
 
   return (
     <div>
-      {profile === null && loading ? (
-        <CircularProgress
-          justify='center'
-          style={{ minHeight: '100vh' }}
-        />
+      {profile === null || loading ? (
+        <CircularProgress justify='center' />
       ) : (
         <Container>
           <Link to='/profiles' className='btn btn-light'>
@@ -55,6 +51,7 @@ const Profile = ({ match }) => {
             )}
 
           <div className='profile-grid my-1'>
+            {/* Profile Avatart with Details */}
             <ProfileTop profile={profile} />
 
             {/* About */}

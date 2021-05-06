@@ -9,6 +9,7 @@ import {
   ACCOUNT_DELETED,
   GET_PROFILES,
   GET_GITHUB_REPOS,
+  GET_GITHUB_ERROR,
 } from '../constant/types';
 
 /* Get all profiles */
@@ -260,16 +261,14 @@ export const getGithubRepos = (githubUsername, source) => {
         payload: data,
       });
     } catch (error) {
-      const errMessage = error.response.data.msg;
-      dispatch(setAlert(errMessage, 'error'));
-
-      console.log(errMessage);
-
       dispatch({
-        type: PROFILE_ERROR,
+        type: GET_GITHUB_ERROR,
         payload: {
-          msg: errMessage,
-          status: error.response.status,
+          msg: "Error fetching repo",
+          status: "Status: 400",
+
+          // msg: error.response.status,
+          // status: error.response.status,
         },
       });
     }

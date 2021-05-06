@@ -62,7 +62,6 @@ const Profiles = () => {
         ) : (
           <CircularProgress
             justify='center'
-            style={{ minHeight: '100vh' }}
           />
           // <h4>No profiles found...</h4>
         )}
