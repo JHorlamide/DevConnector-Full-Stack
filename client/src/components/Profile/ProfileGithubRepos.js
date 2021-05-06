@@ -8,7 +8,9 @@ import { getGithubRepos } from '../../actions/profile';
 
 const ProfileGithubRepos = ({ username }) => {
   const dispatch = useDispatch();
-  const repos = useSelector((state) => state.profile.repos);
+  const {repos, loading } = useSelector((state) => state.profile);
+  console.log(repos)
+  console.log(loading)
 
   useEffect(() => {
     const cancelToken = axios.CancelToken;
@@ -27,8 +29,6 @@ const ProfileGithubRepos = ({ username }) => {
       </h2>
 
       {repos.length > 0 ? (
-        <h4>No Github Repos</h4>
-      ) : (
         repos.map((repo) => (
           <div className='repo bg-white p-1 my-1' key={repo.id}>
             <div>
@@ -56,6 +56,8 @@ const ProfileGithubRepos = ({ username }) => {
             </div>
           </div>
         ))
+      ) : (
+        <h4>No Github Repos</h4>
       )}
     </div>
   );

@@ -37,7 +37,6 @@ const Profiles = () => {
   return profiles === null && loading ? (
     <CircularProgress
       justify='center'
-      style={{ minHeight: '100vh' }}
     />
   ) : (
     <Container>
