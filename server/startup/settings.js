@@ -1,5 +1,5 @@
 const logger = require('./error_handler');
-const config = require('config');
+// const config = require('config');
 
 /* Configuration settings for Json Web Token */
 const configSettings = function () {

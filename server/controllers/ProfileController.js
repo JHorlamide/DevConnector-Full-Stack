@@ -178,7 +178,7 @@ const addProfileExperience = asyncMiddleware(async (req, res) => {
 
 /***
  * @router  DELETE: api/profile/experience/:exp_id
- * @desc    Delete exeperience from profile
+ * @desc    Delete experience from profile
  * @access  Private
  * ***/
 const deleteExperience = asyncMiddleware(async (req, res) => {
@@ -203,15 +203,8 @@ const deleteExperience = asyncMiddleware(async (req, res) => {
  * @access  Private
  * ***/
 const addProfileEducation = asyncMiddleware(async (req, res) => {
-  const {
-    school,
-    degree,
-    fieldofstudy,
-    from,
-    to,
-    current,
-    description,
-  } = req.body;
+  const { school, degree, fieldofstudy, from, to, current, description } =
+    req.body;
 
   const { error } = validateEdu({
     school,
@@ -271,11 +264,7 @@ const deleteEducation = asyncMiddleware(async (req, res) => {
  * ***/
 const getGithubRepos = asyncMiddleware(async (req, res) => {
   const options = {
-    uri: `https://api.github.com/users/${
-      req.params.username
-    }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-      'githubClientId'
-    )}&client_secret=${config.get('githubSecret')}`,
+    uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.githubClientId}&client_secret=${process.env.githubSecret}`,
     method: 'GET',
     headers: { 'user-agent': 'node.js' },
   };
@@ -291,7 +280,6 @@ const getGithubRepos = asyncMiddleware(async (req, res) => {
 
     res.json(JSON.parse(body));
   });
-
 });
 
 module.exports = {

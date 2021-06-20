@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const config = require('config');
+// const config = require('config');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 

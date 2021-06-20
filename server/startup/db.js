@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const config = require('config');
+// const config = require('config');
 const debug = require('debug');
 
 /* Custom module */
 const logger = require('./error_handler');
-const db_uri = config.get('mongoURI');
+// const db_uri = config.get('mongoURI');
 const dbConnection = debug('app:db');
 
 const connectDB = async () => {
