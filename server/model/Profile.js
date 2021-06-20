@@ -14,6 +14,7 @@ const ProfileSchema = new mongoose.Schema({
   website: {
     type: String,
   },
+  
   location: {
     type: String,
   },

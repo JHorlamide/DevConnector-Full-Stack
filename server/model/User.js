@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     minLength: 5,
-    maxLength: 50,
+    maxLength: 255,
     required: true,
   },
 
@@ -22,8 +22,6 @@ const userSchema = new mongoose.Schema({
 
   password: {
     type: String,
-    minLength: 5,
-    maxLenght: 10,
     required: true,
   },
 
@@ -42,9 +40,10 @@ userSchema.methods.generateAuthToken = function () {
     id: this.id,
   };
 
-  const token = jwt.sign(payload, config.get('JwtPrivateKey'), {
+  const token = jwt.sign(payload, process.env.JWT_SECRETE, {
     expiresIn: 360000,
   });
+  
   return token;
 };
 

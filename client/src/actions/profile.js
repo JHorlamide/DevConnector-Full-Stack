@@ -68,11 +68,10 @@ export const getProfileById = (userId, source) => {
       });
       
     } catch (error) {
-      const err = error.response.data.msg;
       dispatch({
         type: PROFILE_ERROR,
         payload: {
-          msg: err,
+          msg: error.response.data.msg,
           status: error.response.status,
         },
       });

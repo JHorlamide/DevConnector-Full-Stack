@@ -5,8 +5,6 @@ const _ = require('lodash');
 
 /* Custom Modules */
 const {validation, User} = require('../model/User');
-// const validation = require('../model/User');
-// const User = require('../model/User');
 
 
 /***

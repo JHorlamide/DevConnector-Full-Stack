@@ -43,13 +43,13 @@ const authUser = asyncMiddleware(async (req, res) => {
   /* Check if user exists */
   let user = await User.findOne({ email: email });
   if (!user) {
-    return res.status(400).json({ msg: "Invalide Credentials" });
+    return res.status(400).json({ msg: "Invalid Credentials" });
   }
 
   /* Validate user password */
-  const validatePassowrd = await bcrypt.compare(password, user.password);
-  if (!validatePassowrd) {
-    return res.status(400).json({ msg: "Invalide Credentials" });
+  const validatePassword = await bcrypt.compare(password, user.password);
+  if (!validatePassword) {
+    return res.status(400).json({ msg: "Invalid Credentials" });
   }
 
   const token = user.generateAuthToken();

@@ -23,8 +23,7 @@ const Profile = ({ match }) => {
   } = useSelector((state) => state);
 
   useEffect(() => {
-    const cancelToken = axios.CancelToken;
-    const source = cancelToken.source();
+    const source = axios.CancelToken.source();
 
     dispatch(getProfileById(match.params.id, source));
     return () => {

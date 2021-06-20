@@ -1,3 +1,4 @@
 node_modules/
 exceptions.log
 errors.log
+.env

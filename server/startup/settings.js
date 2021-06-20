@@ -3,7 +3,7 @@ const config = require('config');
 
 /* Configuration settings for Json Web Token */
 const configSettings = function () {
-  if (!config.get('JwtPrivateKey')) {
+  if (!process.env.JWT_SECRETE) {
     throw new Error('FATAL ERROR: JwtPrivateKey is not defined');
   }
 };

@@ -1,31 +1,24 @@
 const express = require('express');
+const Sentry = require('@sentry/node');
+const dotenv = require('dotenv');
 
 const route = require('./startup/route');
 const logger = require('./startup/error_handler');
 const connectDB = require('./startup/db');
 const { configSettings, NODE_ENV } = require('./startup/settings');
 
-/* Issue Tracking * Sentry * */
-const Sentry = require('@sentry/node');
-const Tracing = require('@sentry/tracing');
+const app = express();
 
+dotenv.config();
+
+/* Issue Tracking * Sentry * */
 Sentry.init({
   dsn:
-    'https://bcababa67494495a80f8175d2b3b406c@o543731.ingest.sentry.io/5749633',
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
+  'https://bcababa67494495a80f8175d2b3b406c@o543731.ingest.sentry.io/5749633',
+  
   tracesSampleRate: 1.0,
 });
 
-const transaction = Sentry.startTransaction({
-  op: 'test',
-  name: 'My First Test Transaction',
-});
-
-
-const app = express();
 
 const PORT = process.env.PORT || 5000;
 
